@@ -1,0 +1,21 @@
+agm-map {
+    height: 450px;
+}
+
+.location-form {
+    padding: 10px;
+    margin: 10px;
+}
+
+.invalid-value {
+    font-size: 14px;
+    color: #ec2030;
+}
+
+.upper-row-margin {
+    margin-top: -20px;
+}
+
+.modal-footer-margin {
+    margin-top: -20px;
+}

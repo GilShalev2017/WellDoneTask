@@ -1,0 +1,30 @@
+<div class="map-view-container">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <h4 class="modal-title">All Locations</h4>
+        </div>
+
+        <div class="modal-body">
+            <agm-map [latitude]="lat"
+                     [longitude]="lng"
+                     [zoom]="14">
+
+                <agm-marker *ngFor="let marker of markers"
+                            [label]="marker.label"
+                            [latitude]="marker.lat"
+                            [longitude]="marker.lng">
+                </agm-marker>
+            </agm-map>
+        </div>
+
+        <div class="modal-footer">
+            <button aria-label="Close"
+                    class="btn btn-warning"
+                    (click)="modalRef.hide()">Close
+            </button>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,100 @@
+<div class="container">
+
+    <div class="row">
+        <h3>Locations</h3>
+    </div>
+
+    <div class="row locations-buttons pull-right">
+
+        <button class="btn btn-warning"
+                [disabled]="!categories || categories.length===0"
+                (click)="addLocation(template)">Add a location
+        </button>
+
+        <button class="btn btn-primary"
+                (click)="editLocation(template)"
+                [disabled]="!locationsTable.selectedRow">Edit a location
+        </button>
+
+        <button class="btn btn-danger"
+                [disabled]="!locationsTable.selectedRow"
+                (click)="deleteLocation(locationsTable.selectedRow.item)">Remove a location
+        </button>
+
+    </div>
+
+    <div class="row pull-left map-btn">
+        <button class="btn btn-success"
+                (click)="showMapView(templateMap)">Map View
+        </button>
+    </div>
+
+    <div class="filter-section pull-right">
+        <span>Filter by Category:</span>
+        <select name="category"
+                class="category-field"
+                (change)="filterByCategory()"
+                [(ngModel)]="selectedCategory">
+            <option *ngFor="let category of categories">{{category.name}}</option>
+        </select>
+    </div>
+
+    <div class="row locations-grid">
+        <data-table id="locations-grid"
+                    [items]="filteredLocations"
+                    [itemCount]="locationsCount"
+                    (reload)="reloadLocations($event)"
+                    [limit]="8"
+                    [sortBy]="name"
+                    [sortAsc]="false"
+                    [selectColumn]="true"
+                    [multiSelect]="false"
+                    [substituteRows]="false"
+                    [expandableRows]="false"
+                    [translations]="translations"
+                    [indexColumnHeader]="'#'"
+                    [selectOnRowClick]="true">
+            <data-table-column
+                    [property]="'name'"
+                    [header]="'Name'"
+                    [sortable]="true">
+            </data-table-column>
+            <data-table-column
+                    [property]="'category'"
+                    [header]="'Category'"
+                    [cellColors]="setCellColor"
+                    [sortable]="true">
+            </data-table-column>
+            <data-table-column
+                    [property]="'address'"
+                    [header]="'Address'"
+                    [sortable]="true">
+            </data-table-column>
+            <data-table-column
+                    [property]="'longitude'"
+                    [header]="'Longitude'"
+                    [sortable]="false">
+            </data-table-column>
+            <data-table-column
+                    [property]="'latitude'"
+                    [header]="'Latitude'"
+                    [sortable]="false">
+            </data-table-column>
+        </data-table>
+
+    </div>
+
+    <ng-template #template>
+        <app-location [editedLocation]="editedLocation"
+                      [modalRef]="modalRef"
+                      (locationSaved)="saveLocation($event)">
+        </app-location>
+    </ng-template>
+
+    <ng-template #templateMap>
+        <app-map-view [locations]="filteredLocations"
+                      [modalRef]="modalRef">
+        </app-map-view>
+    </ng-template>
+
+</div>

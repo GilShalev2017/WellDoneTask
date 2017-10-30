@@ -1,0 +1,57 @@
+<div class="container">
+
+    <div class="row">
+        <h3>Categories</h3>
+    </div>
+
+    <div class="row categories-buttons pull-right">
+        <button class="btn btn-warning"
+                (click)="addCategory(template)">Add a category
+        </button>
+
+        <button class="btn btn-primary"
+                (click)="editCategory(template)"
+                [disabled]="!categoriesTable.selectedRow">Edit a category
+        </button>
+
+        <button class="btn btn-danger"
+                [disabled]="!categoriesTable.selectedRow"
+                (click)="deleteCategory(categoriesTable.selectedRow.item)">Remove a category
+        </button>
+    </div>
+
+    <div class="row categories-grid">
+        <data-table id="categories-grid"
+                    [items]="categories"
+                    [itemCount]="categoriesCount"
+                    (reload)="reloadCategories($event)"
+                    [limit]="8"
+                    [sortBy]="'name'"
+                    [sortAsc]="false"
+                    [selectColumn]="true"
+                    [multiSelect]="false"
+                    [substituteRows]="false"
+                    [expandableRows]="false"
+                    [translations]="translations"
+                    [indexColumnHeader]="'#'"
+                    [selectOnRowClick]="true">
+            <data-table-column
+                    [property]="'name'"
+                    [header]="'Name'"
+                    [sortable]="true">
+            </data-table-column>
+            <!--<data-table-column-->
+                    <!--[cellColors]="setCellColor"-->
+                    <!--[header]="'Color'">-->
+            <!--</data-table-column>-->
+        </data-table>
+    </div>
+
+    <ng-template #template>
+        <app-category [editedCategory]="editedCategory"
+                      [modalRef]="modalRef"
+                      (categorySaved)="saveCateory($event)">
+        </app-category>
+    </ng-template>
+
+</div>

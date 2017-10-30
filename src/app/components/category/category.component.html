@@ -1,0 +1,60 @@
+<div class="modal-content">
+
+    <div class="modal-header">
+        <h4 class="modal-title">{{editedCategory.name}}</h4>
+    </div>
+
+    <div class="modal-body">
+        <div class="row">
+            <form novalidate
+                  #categoryDetailsForm="ngForm"
+                  class="form-horizontal category-form">
+                <div class="form-group row">
+
+                    <label class="col-sm-2 control-label">Name:</label>
+
+                    <div class="col-sm-9">
+                        <input type="text"
+                               name="name"
+                               #name="ngModel"
+                               required
+                               class="form-control"
+                               [(ngModel)]="editedCategory.name">
+                        <div class="invalid-value"
+                             [hidden]="name.valid || name.pristine">
+                            Name cannot be blank
+                        </div>
+                    </div>
+
+                    <!--<label class="col-sm-2 control-label">Color:</label>-->
+
+                    <!--<div class="col-sm-3">-->
+                        <!--<input type="color"-->
+                               <!--name="color"-->
+                               <!--#color="ngModel"-->
+                               <!--required-->
+                               <!--class="form-control"-->
+                               <!--[(ngModel)]="editedCategory.color">-->
+                        <!--<div class="invalid-value"-->
+                             <!--[hidden]="color.valid || color.pristine">-->
+                            <!--Color cannot be blank-->
+                        <!--</div>-->
+
+                    <!--</div>-->
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button (click)="saveCategory()"
+                [disabled]="!categoryDetailsForm.valid"
+                class="btn btn-primary">Save
+        </button>
+
+        <button aria-label="Close"
+                class="btn btn-warning"
+                (click)="modalRef.hide()">Cancel
+        </button>
+    </div>
+
+</div>

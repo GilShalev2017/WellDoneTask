@@ -1,0 +1,25 @@
+:host /deep/ .index-column,
+:host /deep/ .index-column-header {
+    text-align: right;
+}
+
+:host /deep/ .data-table .data-table-row.selected {
+    background-color: #E4EDF9;
+}
+
+.categories-grid {
+    margin: auto;
+    max-width: 1000px;
+    margin-top: 50px;
+}
+
+.categories-buttons {
+    margin-right: 70px;
+    margin-top: 10px;
+    max-width: 1000px;
+}
+
+h3 {
+    text-align: center;
+    text-decoration: underline;
+}
